@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ExamTwo.Services;
+using ExamTwo.DTO;
 
 namespace ExamTwo.Controllers
 {
@@ -38,7 +39,7 @@ namespace ExamTwo.Controllers
         {
             try
             {
-                return Ok(_coffeeMachineService.BuyCoffee());
+                return Ok(_coffeeMachineService.BuyCoffee(request));
             }
             catch (ArgumentException ex)
             {
