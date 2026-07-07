@@ -1,4 +1,5 @@
 ﻿using ExamTwo.Repositories;
+using ExamTwo.DTO;
 
 namespace ExamTwo.Services
 {
@@ -25,6 +26,16 @@ namespace ExamTwo.Services
         public Dictionary<string, int> GetQuantity()
         {
             return _db.keyValues3
+        }
+
+        public string BuyCoffee(OrderRequest request)
+        {
+            if (request.Order == null || request.Order.Count == 0)
+                throw new ArgumentException("Orden vacía.");
+
+            if (request.Payment.TotalAmount <= 0)
+                throw new ArgumentException("Dinero insuficiente.");
+
         }
     }
 

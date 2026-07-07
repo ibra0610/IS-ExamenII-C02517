@@ -36,11 +36,6 @@ namespace ExamTwo.Controllers
         [HttpPost("buyCoffee")]
         public ActionResult<string> BuyCoffee([FromBody] OrderRequest request)
         {
-            if (request.Order == null || request.Order.Count == 0)
-                return BadRequest("Ordem vacia.");
-
-            if (request.Payment.TotalAmount <= 0)
-                return BadRequest("Dinero insuficiente ");
 
             try
             {
