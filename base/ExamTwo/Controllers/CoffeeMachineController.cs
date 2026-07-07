@@ -18,19 +18,19 @@ namespace ExamTwo.Controllers
         [HttpGet("getCoffees")]
         public ActionResult<Dictionary<string, int>> GetCoffeePrices()
         {
-            return Ok(_db.keyValues);
+            return Ok(_coffeeMachineService.GetCoffeePrices());
         }
 
         [HttpGet("getCoffeePricesInCents")]
         public ActionResult<Dictionary<string, int>> GetCoffeePricesInCents()
         {
-            return Ok(_db.keyValues2);
+            return Ok(_coffeeMachineService.GetCoffeePricesInCents());
         }
 
         [HttpGet("getQuantity")]
         public ActionResult<Dictionary<string, int>> GetQuantity()
         {
-            return Ok(_db.keyValues3);
+            return Ok(_coffeeMachineService.GetQuantity());
         }
 
         [HttpPost("buyCoffee")]

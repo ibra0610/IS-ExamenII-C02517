@@ -1,4 +1,4 @@
-﻿
+﻿using ExamTwo.Controllers;
 
 namespace ExamTwo.Services
 {
@@ -12,7 +12,20 @@ namespace ExamTwo.Services
             _db = db;
         }
 
-        
+        public Dictionary<string, int> GetCoffeePrices()
+        {
+            return _db.keyValues;
+        }
+
+        public Dictionary<string, int> GetCoffeePricesInCents()
+        {
+            return _db.keyValues2;
+        }
+
+        public Dictionary<string, int> GetQuantity()
+        {
+            return _db.keyValues3
+        }
     }
 
 }
