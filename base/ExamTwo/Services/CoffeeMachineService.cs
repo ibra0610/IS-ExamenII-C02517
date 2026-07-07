@@ -39,6 +39,16 @@ namespace ExamTwo.Services
             if (request.Payment.TotalAmount < costoTotal)
                 throw new ArgumentException("Dinero insuficiente.");
 
+            
+            CheckAndUpdateItems(request);
+
+            var result = GetChange(request, costoTotal);
+
+            return result;
+        }
+
+        public void CheckAndUpdateItems(OrderRequest request)
+        {
             foreach (var cafe in request.Order)
             {
                 var selected = _db.keyValues.First(c => c.Key == cafe.Key).Key;
@@ -49,10 +59,6 @@ namespace ExamTwo.Services
 
                 UpdateInventory(selected, cafe);
             }
-
-            var result = GetChange(request, costoTotal);
-
-            return result;
         }
 
         public string GetChange(OrderRequest request, var costoTotal)
