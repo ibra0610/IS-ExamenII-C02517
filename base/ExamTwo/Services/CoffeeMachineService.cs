@@ -1,4 +1,4 @@
-﻿using ExamTwo.Controllers;
+﻿using ExamTwo.Repositories;
 
 namespace ExamTwo.Services
 {
