@@ -1,16 +1,18 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ExamTwo.Services;
 
 namespace ExamTwo.Controllers
 {
     public class CoffeeMachineController : Controller
     {
 
-        private readonly Database _db;
+        private CoffeeMachineService _coffeeMachineService;
 
-        public CoffeeMachineController(Database db)
+
+        public CoffeeMachineController(CoffeeMachineService coffeeMachineService)
         {
-            _db = db;
+            _coffeeMachineService = coffeeMachineService;
         }
 
         [HttpGet("getCoffees")]
