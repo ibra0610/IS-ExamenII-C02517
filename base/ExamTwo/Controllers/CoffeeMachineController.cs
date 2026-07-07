@@ -36,10 +36,9 @@ namespace ExamTwo.Controllers
         [HttpPost("buyCoffee")]
         public ActionResult<string> BuyCoffee([FromBody] OrderRequest request)
         {
-
             try
             {
-                return Ok(_coffeeMachineService.GetChange());
+                return Ok(_coffeeMachineService.BuyCoffee());
             }
             catch (ArgumentException ex)
             {
