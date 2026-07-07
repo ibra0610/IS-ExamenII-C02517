@@ -17,21 +17,21 @@ namespace ExamTwo.Controllers
         }
 
         [HttpGet("getCoffees")]
+        public ActionResult<Dictionary<string, int>> GetCoffeeInventory()
+        {
+            return Ok(_coffeeMachineService.GetCoffeeInventory());
+        }
+
+        [HttpGet("getCoffeePricesInCents")]
         public ActionResult<Dictionary<string, int>> GetCoffeePrices()
         {
             return Ok(_coffeeMachineService.GetCoffeePrices());
         }
 
-        [HttpGet("getCoffeePricesInCents")]
-        public ActionResult<Dictionary<string, int>> GetCoffeePricesInCents()
-        {
-            return Ok(_coffeeMachineService.GetCoffeePricesInCents());
-        }
-
         [HttpGet("getQuantity")]
-        public ActionResult<Dictionary<string, int>> GetQuantity()
+        public ActionResult<Dictionary<string, int>> GetCoinsQuantity()
         {
-            return Ok(_coffeeMachineService.GetQuantity());
+            return Ok(_coffeeMachineService.GetCoinsQuantity());
         }
 
         [HttpPost("buyCoffee")]

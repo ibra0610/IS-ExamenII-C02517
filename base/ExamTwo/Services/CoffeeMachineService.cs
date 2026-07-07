@@ -13,17 +13,17 @@ namespace ExamTwo.Services
             _db = db;
         }
 
-        public Dictionary<string, int> GetCoffeePrices()
+        public Dictionary<string, int> GetCoffeeInventory()
         {
             return _db.keyValues;
         }
 
-        public Dictionary<string, int> GetCoffeePricesInCents()
+        public Dictionary<string, int> GetCoffeePrices()
         {
             return _db.keyValues2;
         }
 
-        public Dictionary<string, int> GetQuantity()
+        public Dictionary<string, int> GetCoinsQuantity()
         {
             return _db.keyValues3
         }
