@@ -40,16 +40,6 @@ namespace ExamTwo.Controllers
             try
             {
                 
-                foreach (var cafe in request.Order)
-                {
-                    var selected = _db.keyValues.First(c => c.Key == cafe.Key).Key;
-                    if (cafe.Value > _db.keyValues[selected])
-                    {
-                        return $"No hay suficientes {selected} en la máquina.";
-                    }
-                    _db.keyValues[selected] -= cafe.Value;
-                }
-
                 var change = request.Payment.TotalAmount - costoTotal;
                 String result = $"Su vuelto es de: {change} colones. Desglose:";
 

@@ -39,7 +39,24 @@ namespace ExamTwo.Services
             if (request.Payment.TotalAmount < costoTotal)
                 throw new ArgumentException("Dinero insuficiente.");
 
+            foreach (var cafe in request.Order)
+            {
+                var selected = _db.keyValues.First(c => c.Key == cafe.Key).Key;
+                if (cafe.Value > _db.keyValues[selected])
+                {
+                    throw new ArgumentException($"No hay suficientes {selected} en la máquina.");
+                }
+
+                UpdateInventory(selected, cafe)
+            }
         }
+
+        public void UpdateInventory(var selected, var cafe)
+        {
+            _db.keyValues[selected] -= cafe.Value;
+        }
+
+        
     }
 
 }
