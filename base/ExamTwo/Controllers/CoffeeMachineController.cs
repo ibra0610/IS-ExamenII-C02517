@@ -39,27 +39,7 @@ namespace ExamTwo.Controllers
 
             try
             {
-                
-                var change = request.Payment.TotalAmount - costoTotal;
-                String result = $"Su vuelto es de: {change} colones. Desglose:";
-
-                foreach (var coin in _db.keyValues3.Keys.OrderByDescending(c => c))
-                {
-                    var count = Math.Min(change / coin, _db.keyValues3[coin]);
-                    if (count > 0)
-                    {
-                        result +=  $" {count} moneda de {coin},  ";              
-                        change -= coin * count;
-                    }
-                }
-
-
-                if (change > 0)
-                {
-                    return StatusCode(500, "No hay suficiente cambio en la máquina.");
-                }
-
-                return Ok(result);
+                return Ok(_coffeeMachineService.GetChange());
             }
             catch (ArgumentException ex)
             {

@@ -47,16 +47,42 @@ namespace ExamTwo.Services
                     throw new ArgumentException($"No hay suficientes {selected} en la máquina.");
                 }
 
-                UpdateInventory(selected, cafe)
+                UpdateInventory(selected, cafe);
             }
+
+            var result = GetChange(request, costoTotal);
+
+            return result;
+        }
+
+        public string GetChange(OrderRequest request, var costoTotal)
+        {
+            var change = request.Payment.TotalAmount - costoTotal;
+            String result = $"Su vuelto es de: {change} colones. Desglose:";
+
+            foreach (var coin in _db.keyValues3.Keys.OrderByDescending(c => c))
+            {
+                var count = Math.Min(change / coin, _db.keyValues3[coin]);
+                if (count > 0)
+                {
+                    result +=  $" {count} moneda de {coin},  ";              
+                    change -= coin * count;
+                }
+            }
+
+            if (change > 0)
+            {
+                throw new ArgumentException("No hay suficiente cambio en la máquina.");
+            }
+
+            return result;
         }
 
         public void UpdateInventory(var selected, var cafe)
         {
             _db.keyValues[selected] -= cafe.Value;
         }
-
-        
+  
     }
 
 }
