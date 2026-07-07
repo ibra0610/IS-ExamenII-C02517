@@ -1,4 +1,6 @@
 using ExamTwo.Controllers;
+using ExamTwo.Repositories;
+using ExamTwo.DTO;
 
 var builder = WebApplication.CreateBuilder(args);
 

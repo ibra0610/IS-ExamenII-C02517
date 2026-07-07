@@ -3,7 +3,7 @@ using ExamTwo.DTO;
 
 namespace ExamTwo.Services
 {
-    public class CoffeeMachineService : Service
+    public class CoffeeMachineService
     {
 
         private readonly Database _db;
@@ -23,9 +23,9 @@ namespace ExamTwo.Services
             return _db.keyValues2;
         }
 
-        public Dictionary<string, int> GetCoinsQuantity()
+        public Dictionary<int, int> GetCoinsQuantity()
         {
-            return _db.keyValues3
+            return _db.keyValues3;
         }
 
         public string BuyCoffee(OrderRequest request)
@@ -56,12 +56,13 @@ namespace ExamTwo.Services
                 {
                     throw new ArgumentException($"No hay suficientes {selected} en la máquina.");
                 }
+                int cafeValue = cafe.Value;
 
-                UpdateInventory(selected, cafe);
+                UpdateInventory(selected, cafeValue);
             }
         }
 
-        public string GetChange(OrderRequest request, var costoTotal)
+        public string GetChange(OrderRequest request, int costoTotal)
         {
             var change = request.Payment.TotalAmount - costoTotal;
             String result = $"Su vuelto es de: {change} colones. Desglose:";
@@ -84,9 +85,9 @@ namespace ExamTwo.Services
             return result;
         }
 
-        public void UpdateInventory(var selected, var cafe)
+        public void UpdateInventory(string selected, int cafeValue)
         {
-            _db.keyValues[selected] -= cafe.Value;
+            _db.keyValues[selected] -= cafeValue;
         }
   
     }
