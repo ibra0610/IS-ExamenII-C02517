@@ -39,14 +39,7 @@ namespace ExamTwo.Controllers
 
             try
             {
-                var costoTotal = request.Order.Sum(o => _db.keyValues2.First(c => c.Key == o.Key).Value * o.Value);
-
-                if (request.Payment.TotalAmount < costoTotal)
-                { 
-                    return BadRequest("Dinero insuficiente ");
-                }
-
-
+                
                 foreach (var cafe in request.Order)
                 {
                     var selected = _db.keyValues.First(c => c.Key == cafe.Key).Key;

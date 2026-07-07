@@ -30,10 +30,13 @@ namespace ExamTwo.Services
 
         public string BuyCoffee(OrderRequest request)
         {
+            
             if (request.Order == null || request.Order.Count == 0)
                 throw new ArgumentException("Orden vacía.");
 
-            if (request.Payment.TotalAmount <= 0)
+            var costoTotal = request.Order.Sum(o => _db.keyValues2.First(c => c.Key == o.Key).Value * o.Value);
+
+            if (request.Payment.TotalAmount < costoTotal)
                 throw new ArgumentException("Dinero insuficiente.");
 
         }
