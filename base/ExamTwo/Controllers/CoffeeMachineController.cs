@@ -29,7 +29,7 @@ namespace ExamTwo.Controllers
         }
 
         [HttpGet("getQuantity")]
-        public ActionResult<Dictionary<string, int>> GetCoinsQuantity()
+        public ActionResult<Dictionary<int, int>> GetCoinsQuantity()
         {
             return Ok(_coffeeMachineService.GetCoinsQuantity());
         }
